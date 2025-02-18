@@ -57,10 +57,10 @@ const Banner = () => {
             <div className="absolute inset-0 bg-black bg-opacity-70 z-0"></div>
             {/* Content */}
             <div className="relative z-10 mx-auto">
-              <h1 className="z-10  text-2xl md:text-4xl font-bold font-Montserrat mb-2 md:mb-4">
+              <h1 className="z-10  text-2xl md:text-4xl font-bold font-Montserrat mb-2 md:mb-4 ">
                 {slide.medicineName}
               </h1>
-              <p className=" text-sm md:text-lg">{slide.description}</p>
+              <p className="px-[5%] md:px-[10%]  lg:px-[20%] text-sm md:text-lg">{slide.description}</p>
               <Link to={`/shop`}>
                 <button className="mt-4 md:mt-6 md:px-6 md:py-2 text-sm py-1 px-2 md:text-lg transition-all duration-300 bg-mainColor font-medium hover:bg-secondBgColor rounded-md">
                   Shop Now

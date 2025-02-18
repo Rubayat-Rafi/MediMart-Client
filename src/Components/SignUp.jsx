@@ -53,7 +53,7 @@ const SignUp = () => {
     try {
       const data = await handleGoogle();
       await saveUser(data?.user);
-      navigate("/shop");
+      navigate("/");
     } catch (error) {
       toast.error("Google Sign-In Error:", error);
     }
@@ -64,7 +64,7 @@ const SignUp = () => {
     try {
       const data = await handleFacebook();
       await saveUser(data?.user);
-      navigate("/shop");
+      navigate("/");
     } catch (err) {
       toast.error(err);
     }

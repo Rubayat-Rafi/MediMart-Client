@@ -1,19 +1,21 @@
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import useAuth from "../hook/useAuth";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+
 import { saveUser } from "../utilities/utils";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 const SignIn = () => {
   const { signInUser ,   handleGoogle, handleFacebook} = useAuth();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
 
   const handleSignIn = async data => {
     const email = data.email;
@@ -21,20 +23,24 @@ const SignIn = () => {
 
      await signInUser(email, password);
      toast.success('Successfully Signin')
-     navigate('/')
+     
   }
 
   // handle Google SignIn 
   const handleGoogleSignIn = async () => {
-    const data = await handleGoogle();  
-    await saveUser(data?.user);  
-    navigate('/');
+    try {
+      const data = await handleGoogle();
+      await saveUser(data?.user);
+      navigate("/");
+    } catch (error) {
+      toast.error("Google Sign-In Error:", error);
+    }
   }
   // handle facebook SignIn 
   const handleFacebookSignIn = async () => {
     try {
-      const data =  await handleFacebook();
-      await saveUser(data?.user)
+      const data = await handleFacebook();
+      await saveUser(data?.user);
       navigate("/");
     } catch (err) {
       toast.error(err);

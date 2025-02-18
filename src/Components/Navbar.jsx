@@ -25,7 +25,7 @@ const totalPrice = carts.reduce((acc, cart) => acc + cart.unitPrice * cart.count
   const links = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" > Home </NavLink>
       </li>
       <li>
         <NavLink to="/shop">Shop</NavLink>
