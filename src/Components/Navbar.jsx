@@ -30,16 +30,16 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/" > Home </NavLink>
+        <NavLink to="/" onClick={()=>setOpenMenu(false)}> Home </NavLink>
       </li>
       <li>
-        <NavLink to="/shop">Shop</NavLink>
+        <NavLink to="/shop" onClick={()=>setOpenMenu(false)}>Shop</NavLink>
       </li>
       <li>
-        <Link href="/artical">Artical</Link>
+        <a href="#artical" onClick={()=>setOpenMenu(false)}>Artical</a>
       </li>
       <li>
-        <Link href="/contact">Contact</Link>
+        <a href="/contact" onClick={()=>setOpenMenu(false)}>Contact</a>
       </li>
     </>
   );
@@ -76,12 +76,12 @@ const Navbar = () => {
             MediMart
           </Link>
         </div>
-        <div className="flex-none z-50 gap-3">
+        <div className="flex-none z-50  gap-1 md:gap-3">
           {user === null && (
             <ul className="menu menu-horizontal px-1 hidden lg:flex">{links}</ul>
           )}
           <Menu>
-            <MenuButton className="inline-flex items-center gap-2  rounded-md bg-mainColor py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-secondBgColor data-[open]:bg-secondBgColor data-[focus]:outline-1 data-[focus]:outline-white">
+            <MenuButton className="inline-flex items-center gap-2  rounded-md bg-mainColor py-1 px-2 md:py-1.5 md:px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-secondBgColor data-[open]:bg-secondBgColor data-[focus]:outline-1 data-[focus]:outline-white">
               Lan
               <IoLanguage />
             </MenuButton>
@@ -91,13 +91,13 @@ const Navbar = () => {
               className="w-16 mt-2 origin-top-right rounded-xl border z-50 border-black bg-gray-700 p-1 text-sm/6 text-white transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0"
             >
               <MenuItem>
-                <button className="group  flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                <button className="group  flex w-full items-center gap-2 rounded-lg py-1 px-2 md:py-1.5 md:px-3 data-[focus]:bg-white/10">
                   Eng
                 </button>
               </MenuItem>
 
               <MenuItem>
-                <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                <button className="group flex w-full items-center gap-2 rounded-lg py-1 px-2 md:py-1.5 md:px-3 data-[focus]:bg-white/10">
                   Ban
                 </button>
               </MenuItem>
@@ -193,7 +193,7 @@ const Navbar = () => {
             </>
           ) : (
             <Link to="/join-us">
-              <Button className=" mx-2 rounded-md bg-mainColor py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-secondBgColor data-[open]:bg-secondBgColor data-[focus]:outline-1 data-[focus]:outline-white">
+              <Button className=" mx-2 rounded-md bg-mainColor py-1 px-2 md:py-1.5 md:px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-secondBgColor data-[open]:bg-secondBgColor data-[focus]:outline-1 data-[focus]:outline-white">
                 Join US
               </Button>
             </Link>

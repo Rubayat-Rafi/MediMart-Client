@@ -35,7 +35,7 @@ const Banner = () => {
     <Swiper
       spaceBetween={30}
       effect={"fade"}
-      navigation={true}
+      // navigation={true}
       pagination={{ clickable: true }}
       autoplay={{ delay: 3000 }}
       loop={true}
@@ -44,7 +44,7 @@ const Banner = () => {
       
     >
       {banners.map((slide) => (
-        <SwiperSlide key={slide.id}>
+        <SwiperSlide key={slide._id}>
           <div
             style={{
               backgroundImage: `url(${slide.photoURL})`,

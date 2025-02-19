@@ -1,6 +1,6 @@
 const ArticalSection = () => {
   return (
-    <section className="bg-base-200 py-12">
+    <section id="artical" className="bg-base-200 py-12">
       <div className="container mx-auto px-6">
       <h2 className="text-xl font-bold text-gray-800 text-center mb-10">
       Read Articles
