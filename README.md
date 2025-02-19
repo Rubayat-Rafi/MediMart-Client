@@ -52,7 +52,7 @@ Medi Mart is a full-stack e-commerce platform designed to facilitate the buying 
 
 - Front-end Live Site Link: https://medimart-678e7.web.app
 
-- Client Side Github Repository Link:https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-Rubayat-Rafi
-- Server Side Github Repository Link: https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-Rubayat-Rafi
+- Client Side Github Repository Link: https://github.com/Rubayat-Rafi/MediMart-Client
+- Server Side Github Repository Link: https://github.com/Rubayat-Rafi/Medi-Mart-Server-Site
 
 
