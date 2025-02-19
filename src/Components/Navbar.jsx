@@ -11,16 +11,21 @@ import useAuth from "../hook/useAuth";
 import useCart from "../hook/useCart";
 import toast from "react-hot-toast";
 import useRole from "../hook/useRole";
+import { useState } from "react";
+import { FaBars } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
+
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const navigate = useNavigate();
   const [carts] = useCart()
   const [role] = useRole()
-  
+  const [openMenu, setOpenMenu] = useState(false);
+
 
   // Calculate total price on the frontend
-const totalPrice = carts.reduce((acc, cart) => acc + cart.unitPrice * cart.count, 0);
+  const totalPrice = carts.reduce((acc, cart) => acc + cart.unitPrice * cart.count, 0);
 
   const links = (
     <>
@@ -31,10 +36,10 @@ const totalPrice = carts.reduce((acc, cart) => acc + cart.unitPrice * cart.count
         <NavLink to="/shop">Shop</NavLink>
       </li>
       <li>
-        <NavLink to="/artical">Artical</NavLink>
+        <Link href="/artical">Artical</Link>
       </li>
       <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <Link href="/contact">Contact</Link>
       </li>
     </>
   );
@@ -52,13 +57,28 @@ const totalPrice = carts.reduce((acc, cart) => acc + cart.unitPrice * cart.count
     <div className="bg-base-100 shadow-lg sticky top-0 left-0 w-full z-50">
       <nav className="navbar mx-auto max-w-[1440px]">
         <div className="flex-1">
+          {/* mobile menu */}
+          {user === null && (
+            <>
+              <div
+                onClick={() => setOpenMenu(!openMenu)}
+                className="cursor-pointer text-xl md:hidden mr-3"
+              >
+                {openMenu ? <RxCross2 /> : <FaBars />}
+              </div>
+              <div>
+                {openMenu && (
+                  <ul className="absolute top-16 left-0  md:hidden menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-40 p-2 shadow ml-3">{links}</ul>)}
+              </div>
+            </>
+          )}
           <Link to="/" className=" text-xl font-bold text-primaryTextColor">
-           MediMart
+            MediMart
           </Link>
         </div>
         <div className="flex-none z-50 gap-3">
           {user === null && (
-            <ul className="menu menu-horizontal px-1">{links}</ul>
+            <ul className="menu menu-horizontal px-1 hidden lg:flex">{links}</ul>
           )}
           <Menu>
             <MenuButton className="inline-flex items-center gap-2  rounded-md bg-mainColor py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-secondBgColor data-[open]:bg-secondBgColor data-[focus]:outline-1 data-[focus]:outline-white">
@@ -148,19 +168,19 @@ const totalPrice = carts.reduce((acc, cart) => acc + cart.unitPrice * cart.count
                 >
                   {links}
                   {role === 'user' && (
-                  <li>
-                    <NavLink to={`/dashboard/profile`}>  Dashboard  </NavLink>
-                  </li>
+                    <li>
+                      <NavLink to={`/dashboard/profile`}>  Dashboard  </NavLink>
+                    </li>
                   )}
                   {role === 'admin' && (
-                  <li>
-                    <NavLink to={`/dashboard`} >  Dashboard  </NavLink>
-                  </li>
+                    <li>
+                      <NavLink to={`/dashboard`} >  Dashboard  </NavLink>
+                    </li>
                   )}
                   {role === 'seller' && (
-                  <li>
-                    <NavLink to={`/dashboard/seller-home`}  >  Dashboard  </NavLink>
-                  </li>
+                    <li>
+                      <NavLink to={`/dashboard/seller-home`}  >  Dashboard  </NavLink>
+                    </li>
                   )}
                   <li>
                     <Link to='dashboard/profile'>Profile </Link>
