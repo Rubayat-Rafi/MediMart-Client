@@ -26,11 +26,13 @@ import SalesReportPage from "../Pages/Dashboard/DashBoard Page/SalesReportPage";
 
 import Statistics from "../Pages/Dashboard/Statistics";
 import Profile from "../Pages/Dashboard/DashBoard Page/Profile";
+import ErrorPage from "../Components/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout/>,
+        errorElement: <ErrorPage/>,
         children : [
             {
                 path:'/',

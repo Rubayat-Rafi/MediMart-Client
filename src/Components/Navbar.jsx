@@ -36,10 +36,10 @@ const Navbar = () => {
         <NavLink to="/shop" onClick={()=>setOpenMenu(false)}>Shop</NavLink>
       </li>
       <li>
-        <a href="#artical" onClick={()=>setOpenMenu(false)}>Artical</a>
+        <a href="/#artical" onClick={()=>setOpenMenu(false)}>Artical</a>
       </li>
       <li>
-        <a href="/contact" onClick={()=>setOpenMenu(false)}>Contact</a>
+        <a href="/#contact" onClick={()=>setOpenMenu(false)}>Contact</a>
       </li>
     </>
   );
