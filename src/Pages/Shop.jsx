@@ -17,14 +17,18 @@ const Shop = () => {
   const [selectedMedicine, setSelectedMedicine] = useState(null);
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [filter, setFilter] = useState('')
+  const [search, setSearch] = useState('');
+
+
 
   const {
-    data: medicines = [],
-    isLoading,
+    data: medicines = []
+
   } = useQuery({
-    queryKey: ["medicines"],
+    queryKey: ["medicines", filter, search],
     queryFn: async () => {
-      const { data } = await axiosPublic.get("/shop-medicine");
+      const { data } = await axiosPublic.get(`/shop-medicine?search=${search}&filter=${filter}`);
       return data;
     },
   });
@@ -41,7 +45,7 @@ const Shop = () => {
 
 
 
-  if (isLoading) return <LoadingSpinner/>;
+  // if (isLoading) return <LoadingSpinner />;
 
   const handleViewClick = (medicine) => {
     setSelectedMedicine(medicine);
@@ -69,7 +73,7 @@ const Shop = () => {
       count: medicine?.counter,
       unitPrice: discountPrice,
       cartId: medicine?._id,
-      sellerEmail : medicine?.seller?.email,
+      sellerEmail: medicine?.seller?.email,
     };
 
     try {
@@ -97,7 +101,8 @@ const Shop = () => {
           <input
             type="text"
             placeholder="Search for products..."
-            value=""
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             className="w-full max-w-md px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#059669] focus:outline-none"
           />
           <button className="">
@@ -106,13 +111,14 @@ const Shop = () => {
         </div>
 
         {/* filter section  */}
-        <select className=" mb-4 w-full max-w-xs px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#059669] focus:outline-none">
-          <option disabled selected>
-            Filter Category
-          </option>
+        <select
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className=" mb-4 w-full max-w-xs px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#059669] focus:outline-none">
+          <option value="">All Categories</option>
           {categorys.map((category) => (
-              <option key={category._id} value={category.categoryName}>{category.categoryName}</option>
-              ))}
+            <option key={category._id} value={category.categoryName}>{category.categoryName}</option>
+          ))}
         </select>
       </div>
       {/* shop table  */}
