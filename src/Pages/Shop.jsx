@@ -29,6 +29,16 @@ const Shop = () => {
     },
   });
 
+  const {
+    data: categorys = []
+  } = useQuery({
+    queryKey: ["categorys"],
+    queryFn: async () => {
+      const { data } = await axiosPublic.get(`/categorys`);
+      return data;
+    },
+  });
+
 
 
   if (isLoading) return <LoadingSpinner/>;
@@ -100,11 +110,9 @@ const Shop = () => {
           <option disabled selected>
             Filter Category
           </option>
-          <option>Homer</option>
-          <option>Marge</option>
-          <option>Bart</option>
-          <option>Lisa</option>
-          <option>Maggie</option>
+          {categorys.map((category) => (
+              <option key={category._id} value={category.categoryName}>{category.categoryName}</option>
+              ))}
         </select>
       </div>
       {/* shop table  */}
